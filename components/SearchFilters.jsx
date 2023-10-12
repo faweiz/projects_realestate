@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
-import { Flex, Select, Box, Text, Input, Spinner, Icon, Button } from '@chakra-ui/react';
+import { Flex, Select, Box, Text, Input, Spinner, Icon, Button, IconButton } from '@chakra-ui/react';
+import { PhoneIcon, AddIcon, WarningIcon, SearchIcon, Search2Icon } from '@chakra-ui/icons'
 import { useRouter } from 'next/router';
 import { MdCancel } from 'react-icons/md';
 import Image from 'next/image';
 
 import { filterData, getFilterValues } from '../utils/filterData';
 import { baseUrl, fetchApi } from '../utils/fetchApi';
+import { RealtyUrl, RealtyFetchApi } from '../utils/fetchApi';
 import noresult from '../assets/images/noresult.svg';
 
 export default function SearchFilters() {
   const [filters] = useState(filterData);
   const [searchTerm, setSearchTerm] = useState('');
   const [locationData, setLocationData] = useState();
-  const [showLocations, setShowLocations] = useState(false);
+  const [showLocations, setShowLocations] = useState(true);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -31,15 +33,28 @@ export default function SearchFilters() {
     router.push({ pathname: path, query: query });
   };
 
+  // useEffect(() => {
+  //   if (searchTerm !== '') {
+  //     const fetchData = async () => {
+  //       setLoading(true);
+  //       const data = await fetchApi(`${baseUrl}/auto-complete?query=${searchTerm}`);
+  //       setLoading(false);
+  //       setLocationData(data?.hits);
+  //     };
+  //     fetchData();
+  //   }
+  // }, [searchTerm]);
+
   useEffect(() => {
     if (searchTerm !== '') {
       const fetchData = async () => {
         setLoading(true);
-        const data = await fetchApi(`${baseUrl}/auto-complete?query=${searchTerm}`);
+        const RealtyUrlNew = new URL(`/locations/v2/auto-complete?input=${searchTerm}`, RealtyUrl );
+        const res= await fetch(RealtyUrlNew.href, RealtyFetchApi);
+        const data = await res.json();
         setLoading(false);
-        setLocationData(data?.hits);
+        setLocationData(data?.autocomplete);
       };
-
       fetchData();
     }
   }, [searchTerm]);
@@ -58,7 +73,7 @@ export default function SearchFilters() {
         </Box>
       ))}
       <Flex flexDir='column'>
-        <Button onClick={() => setShowLocations(!showLocations)} border='1px' borderColor='gray.200' marginTop='2' >
+        <Button onClick={() => setShowLocations(!showLocations)} colorScheme='blue' border='1px' marginTop='2' >
           Search Location
         </Button>
         {showLocations && (
@@ -83,29 +98,34 @@ export default function SearchFilters() {
             )}
             {loading && <Spinner margin='auto' marginTop='3' />}
             {showLocations && (
-              <Box height='300px' overflow='auto'>
+              <Box width='300px' height='100px' overflow='auto'>
                 {locationData?.map((location) => (
                   <Box
                     key={location.id}
                     onClick={() => {
-                      searchProperties({ locationExternalIDs: location.externalID });
+                      //searchProperties({ locationExternalIDs: location.externalID });
+                      searchProperties({ city: location.city });
+                      searchProperties({ state_code: location.state_code });
                       setShowLocations(false);
-                      setSearchTerm(location.name);
+                      //setSearchTerm(location.name);
+                      setSearchTerm(location.city);
+                      setSearchTerm(location.state_code);
                     }}
                   >
                     <Text cursor='pointer' bg='gray.200' p='2' borderBottom='1px' borderColor='gray.100' >
-                      {location.name}
+                      {/* {location.name} */}
+                      {location.city} {location.state_code}
                     </Text>
                   </Box>
                 ))}
-                {!loading && !locationData?.length && (
+                {/* {!loading && !locationData?.length && (
                   <Flex justifyContent='center' alignItems='center' flexDir='column' marginTop='5' marginBottom='5' >
                     <Image src={noresult} />
                     <Text fontSize='xl' marginTop='3'>
                       Waiting to search!
                     </Text>
                   </Flex>
-                )}
+                )} */}
               </Box>
             )}
           </Flex>

@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "build": "3.23.181",
+    "schema": "core.3",
+    "tracking_params": {
+      "channel": "for_sale",
+      "siteSection": "for_sale",
+      "city": "Hanover",
+      "county": "unknown",
+      "neighborhood": "unknown",
+      "searchCityState": "Hanover, MD",
+      "state": "MD",
+      "zip": "unknown",
+      "srpPropertyStatus": "srp:for_sale",
+      "listingActivity": "unknown",
+      "propertyStatus": "for_sale",
+      "propertyType": "any",
+      "searchBathrooms": "any",
+      "searchBedrooms": "any",
+      "searchMaxPrice": "unknown",
+      "searchMinPrice": "unknown",
+      "searchRadius": "unknown",
+      "searchHouseSqft": "any",
+      "searchLotSqft": "any",
+      "searchResults": "83",
+      "sortResults": "relevance",
+      "searchCoordinates": "unknown",
+      "version": "1.0"
+    },
+    "tracking": "type|meta|data|resource_type|property_list|query|client_id|rdc_mobile_native,14.13.0.68|prop_status|for_sale|schema|core.3|limit|offset|city|Hanover|state_code|MD|sort|relevance|count|total^5K|0|2B|2B^^$0|1|2|$3|4|5|$6|7|8|9|A|B|C|M|D|N|E|F|G|H|I|J]|8|9|K|O|L|P]]",
+    "returned_rows": 83,
+    "matching_rows": 83
+  },
+  "properties": [
+    {
+      "property_id": "M9953353417",
+      "listing_id": "2950841928",
+      "products": [
+        "core.agent",
+        "core.broker",
+        "co_broke"
+      ],
+      "rdc_web_url": "https://www.realtor.com/realestateandhomes-detail/Hanover_MD_21076_M99533-53417",
+      "prop_type": "condo",
+      "prop_sub_type": "townhomes",
+      "address": {
+        "city": "Hanover",
+        "line": "2629 Richmond Way",
+        "postal_code": "21076",
+        "state_code": "MD",
+        "state": "Maryland",
+        "county": "Anne Arundel",
+        "fips_code": "24003",
+        "county_needed_for_uniq": false,
+        "lat": 39.130731,
+        "lon": -76.756792
+      },
+      "branding": {
+        "listing_office": {
+          "list_item": {
+            "name": "NVR Services, Inc.",
+            "photo": null,
+            "phone": null,
+            "slogan": null,
+            "show_realtor_logo": false,
+            "link": null,
+            "accent_color": null
+          }
+        }
+      },
+      "prop_status": "for_sale",
+      "price": 534990,
+      "baths_half": 1,
+      "baths_full": 2,
+      "baths": 3,
+      "beds": 3,
+      "building_size": {
+        "size": 2285,
+        "units": "sqft"
+      },
+      "agents": [
+        {
+          "primary": true,
+          "advertiser_id": "3020335",
+          "id": "3020335",
+          "photo": null,
+          "name": "Tineshia Johnson"
+        }
+      ],
+      "office": {
+        "id": "cf51414fcea7dfbe50d55c5dad986038",
+        "name": "NVR Services, Inc."
+      },
+      "last_update": "2022-12-20T16:44:04Z",
+      "client_display_flags": {
+        "presentation_status": "for_sale",
+        "is_showcase": false,
+        "lead_form_phone_required": true,
+        "price_change": 0,
+        "is_co_broke_email": true,
+        "has_open_house": false,
+        "is_co_broke_phone": false,
+        "is_new_listing": true,
+        "is_new_plan": false,
+        "is_new_construction": true,
+        "is_turbo": false,
+        "is_office_standard_listing": false,
+        "suppress_map_pin": false,
+        "show_contact_a_lender_in_lead_form": true,
+        "show_veterans_united_in_lead_form": true,
+        "is_showcase_choice_enabled": false
+      },
+      "lead_forms": {
+        "form": {
+          "name": {
+            "required": true,
+            "minimum_character_count": 1
+          },
+          "email": {
+            "required": true,
+            "minimum_character_count": 5
+          },
+          "phone": {
+            "required": true,
+            "minimum_character_count": 10,
+            "maximum_character_count": 11
+          },
+          "message": {
+            "required": false,
+            "minimum_character_count": 0
+          },
+          "show": true
+        },
+        "show_agent": false,
+        "show_broker": false,
+        "show_builder": false,
+        "show_contact_a_lender": true,
+        "show_veterans_united": true,
+        "form_type": "classic",
+        "lead_type": "co_broke",
+        "is_lcm_enabled": false,
+        "flip_the_market_enabled": false,
+        "show_text_leads": true,
+        "cashback_enabled": false,
+        "smarthome_enabled": false
+      },
+      "photo_count": 30,
+      "thumbnail": "https://ap.rdcpix.com/4076f5f62d1db0f2a624e326897f6b40l-m1368181663x.jpg",
+      "page_no": 1,
+      "rank": 1,
+      "list_tracking": "type|property",
+      "mls": {
+        "name": "BrightMLS",
+        "id": "MDAA2050744",
+        "plan_id": null,
+        "abbreviation": "PHPA",
+        "type": "mls"
+      },
+      "data_source_name": "mls"
+    }
+  ]
+}

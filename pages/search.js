@@ -7,7 +7,13 @@ import { BsFilter } from 'react-icons/bs';
 import Property from '../components/Property';
 import SearchFilters from '../components/SearchFilters';
 import { baseUrl, fetchApi } from '../utils/fetchApi';
+import { RealtyUrl, RealtyFetchApi } from '../utils/fetchApi';
 import noresult from '../assets/images/noresult.svg'
+import Link from 'next/link'
+
+import * as search_data from '.././pages/json/search_data.json'
+
+//import { GoogleMap, withGoogleMap, withScriptjs } from 'react-google-maps'
 
 const Search = ({ properties }) => {
   const [searchFilters, setSearchFilters] = useState(false);
@@ -37,7 +43,7 @@ const Search = ({ properties }) => {
       <Flex flexWrap='wrap'>
         {properties.map((property) => <Property property={property} key={property.id} />)}
       </Flex>
-      {properties.length === 0 && (
+      {properties.length == 0 && (
         <Flex justifyContent='center' alignItems='center' flexDir='column' marginTop='5' marginBottom='5'>
           <Image src={noresult} />
           <Text fontSize='xl' marginTop='3'>No Result Found.</Text>
@@ -48,22 +54,31 @@ const Search = ({ properties }) => {
 };
 
 export async function getServerSideProps({ query }) {
-  const purpose = query.purpose || 'for-rent';
-  const rentFrequency = query.rentFrequency || 'yearly';
-  const minPrice = query.minPrice || '0';
-  const maxPrice = query.maxPrice || '1000000';
-  const roomsMin = query.roomsMin || '0';
-  const bathsMin = query.bathsMin || '0';
-  const sort = query.sort || 'price-desc';
-  const areaMax = query.areaMax || '35000';
-  const locationExternalIDs = query.locationExternalIDs || '5002';
-  const categoryExternalID = query.categoryExternalID || '4';
+  const city = query.city || 'Hanover'; 
+  const state_code = query.state_code || 'MD'; 
+  const offset = '0'; 
+  const limit = "100"; 
+  const prop_type = query.prop_type || 'single_family'; 
+  const price_min = query.price_min || '0'; 
+  const price_max = query.price_max || '10000000'; 
+  const beds_min = query.beds_min || '1'; 
+  const baths_min = query.baths_min || '1'; 
+  const sqft_min = query.sqft_min || '500'; 
+  const sqft_max = query.sqft_max || '10000'; 
+  const sort = query.sort || 'price_low'; 
 
-  const data = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${minPrice}&priceMax=${maxPrice}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`);
+  // const RealtyUrlNew = new URL(`/properties/v2/list-for-sale?city=${city}&state_code=${state_code}&offset=${offset}&limit=${limit}
+  //                               &prop_type=${prop_type}&price_min=${price_min}&price_max=${price_max}&beds_min=${beds_min}&baths_min=${baths_min}
+  //                               &sqft_min=${sqft_min}&sqft_max=${sqft_max}&sort=${sort}`, RealtyUrl );
+  // const res= await fetch(RealtyUrlNew.href, RealtyFetchApi);
+  // const data = await res.json();
 
+  // http://localhost:5000/properties/v2/list-for-sale?zipcode=21076&limit=10&sort=pricea&price_max=900000&beds_min=2&baths_min=2&sqft_min=1000&sqft_max=7500&lotSize_min=1000&yearbuilt_min=2000
+  
   return {
     props: {
-      properties: data?.hits,
+      //properties: data?.properties,
+      properties: search_data?.properties,
     },
   };
 }
